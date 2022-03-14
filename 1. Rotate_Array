@@ -29,4 +29,44 @@ public:
     }
 };
 
-//Time Complexity is O(n)
+//Time Complexity is O(n) and Extra vector is created so space complextity is O(n).
+
+//Better solution
+//Approach: 
+/*
+input:
+    a[]={1, 2, 3, 4, 5, 6, 7}
+    k = 3
+output:
+    a[] = {5, 6, 7, 1, 2, 3, 4}
+   
+Explaination:
+    Roate first half till n - k, here n is 7 and k is 3, so rotate a[] from 0 to n-k-1 i.e., 0 to 3
+    Array afte rotation
+    a[] = {4, 3, 2, 1, 5, 6, 7}
+    Now rotate second half, from n-k to n-1, i.e, 4 to 6
+    a[] = {4, 3, 2, 1, 7, 6, 5}
+    Now rotate whole array
+    a[] = {5, 6, 7, 1, 2, 3, 4} - > This is our output
+*/
+
+class Solution {
+public:
+    void rotate(vector<int> &a, int s, int e){
+        while(s<=e){
+            swap(a[s],a[e]);
+            s++,e--;
+        }
+    }
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k = k % n;
+        int x = n - k;
+        rotate(nums, 0, x-1);
+        rotate(nums, x, n-1);
+        rotate(nums, 0, n-1);
+    }
+};
+
+//Time Complexity: O(n) and space complexity is 1. 
+
