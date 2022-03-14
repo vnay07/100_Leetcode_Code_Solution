@@ -1,0 +1,61 @@
+// Question 2: Evaluate Reverse Polish Notation
+//Question Link: https://leetcode.com/problems/evaluate-reverse-polish-notation/
+
+// Implemented using stack
+
+/*
+Approach:
+  We are provided with an vector of strings
+    Input: tokens = ["2","1","+","3","*"]
+    Output: 9
+    Explanation: ((2 + 1) * 3) = 9
+ 
+ 1. We will add vector's element to stack if it is not an operator(+, -, *, /)
+ 2. When tokens[] contains a operator we will take the top two values of stack and perform mathematical operation in it.
+ 3. Finally we will push the resultant to stack.
+ 4. At last we will return stack's top element which will be our answer.
+*/
+
+//Code
+
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<string> stk;
+        int n = tokens.size();
+        
+        for(int i=0;i<n;i++){
+            if(tokens[i] != "+" && tokens[i] != "*" && tokens[i] != "-" && tokens[i] != "/"){
+                stk.push(tokens[i]);
+            }
+            else{
+                int b = stoi(stk.top());
+                stk.pop();
+                int a = stoi(stk.top());
+                stk.pop();
+                string str;
+                str = tokens[i];
+                char ch = str[0];
+                switch(ch){
+                    case '+':
+                        stk.push(to_string(a+b));
+                        break;
+                    case '-':
+                        stk.push(to_string(a-b));
+                        break;
+                    case '*':
+                        stk.push(to_string(a*b));
+                        break;
+                    case '/':
+                        stk.push(to_string(a/b));
+                        break;
+                    
+                }
+            }
+        }
+         
+        return stoi(stk.top());
+    }
+};
+
+//Time Complexity: O(n) Space Complexity: O(n)
