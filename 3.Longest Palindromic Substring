@@ -1,0 +1,47 @@
+//Question 3: Longest Palindromic Substring
+//Question Link: https://leetcode.com/problems/longest-palindromic-substring/
+
+//Code
+class Solution {
+public:
+    
+    string longestPalindrome(string s) {
+        int n = s.length();
+        bool T[n][n];
+        //string best_str;
+        int left;
+        int len;
+        for(int g=0;g<n;g++){
+            for(int i=0, j=g;j<n;i++, j++){
+                if(g==0){
+                    //best_str = s.substr(i,g+1);
+                    left = i;
+                    len = g+1;
+                    T[i][j] = true;
+                }
+                else if(g==1){
+                    if(s[i]==s[j]){
+                        //best_str = s.substr(i,g+1);
+                        left = i;
+                        len = g+1;
+                        T[i][j] = true;
+                    }else{
+                        T[i][j] = false;
+                    }
+                }else{
+                    if(T[i+1][j-1] == true && s[i] == s[j]){
+                        //best_str = s.substr(i,g+1);
+                        left = i;
+                        len = g+1;
+                        T[i][j] = true;
+                    }
+                    else
+                        T[i][j] = false;
+                }
+            }
+        }
+        s = s.substr(left,len);
+        return s;
+        
+    }
+};
