@@ -1,0 +1,48 @@
+// Question 4. Median of two sorted array
+// Question Link
+
+//Code:
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& a, vector<int>& b) {
+        int n = a.size();
+        int m = b.size();
+        int i=0, j=0;
+        vector<int> res;
+        while(i<n && j<m){
+            if(a[i] <= b[j]){
+                res.push_back(a[i]);
+                i++;
+            }
+            else{
+                res.push_back(b[j]);
+                j++;
+            }
+        }
+        
+        while(i<n){
+            res.push_back(a[i]);
+            i++;
+        }
+        
+        
+        while(j<m){
+            res.push_back(b[j]);
+            j++;
+        }
+        
+        n = res.size();
+        int mid = n/2;
+        double median;
+        if(n%2 == 0){
+            //Even length
+            median = (double)(res[mid]+res[mid-1])/2;
+        }else{
+            //Odd Length
+            median = res[mid];
+        }
+        
+        return median;
+    }
+};
