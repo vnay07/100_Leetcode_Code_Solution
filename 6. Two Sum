@@ -1,0 +1,21 @@
+// Question Link: https://leetcode.com/problems/two-sum/
+
+
+// Code - Using HashMap
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& a, int target) {
+        unordered_map<int, int> m;
+        int n = a.size();
+        for(int i=0;i<n;i++){
+            int temp = target - a[i];
+            if(m.find(temp) != m.end()){
+                return {m.find(temp)->second, i};
+            }
+            m[a[i]]=i;
+            // m.insert({a[i], i});
+        }
+        return {};
+    }
+};
