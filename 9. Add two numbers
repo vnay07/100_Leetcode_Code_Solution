@@ -1,0 +1,85 @@
+//Problem Link: https://leetcode.com/problems/add-two-numbers/
+
+//Solution
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* insertSumVal(ListNode* root, int key){
+        ListNode* temp = new ListNode();
+        temp->val = key;
+        temp->next= NULL;
+        
+        if(root == NULL){
+            return temp;
+        }
+        
+        ListNode* itr = root;
+        while(itr->next!=NULL){
+            itr = itr->next;
+        }
+        itr->next = temp;
+        
+        return root;
+    }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* sumList = NULL;
+        int carry=0;
+        int sum;
+        int prod;
+        while(l1!=NULL&&l2!=NULL){
+            sum = l1->val + l2->val + carry;
+            
+            if(sum > 9){
+                prod = sum % 10;
+                carry = sum / 10;
+                
+            }else{
+                prod = sum % 10;
+                carry = 0;
+            }
+            cout<<prod<<" "<<carry<<endl;
+            sumList = insertSumVal(sumList, prod);
+            l1 = l1->next;
+            l2 = l2->next;
+        }
+        while(l1!=NULL){
+            sum = l1->val + carry;
+            if(sum>9){
+                prod = sum % 10;
+                carry = sum / 10;
+            }else{
+                prod = sum % 10;
+                carry = 0;
+            }
+            sumList = insertSumVal(sumList, prod);
+            l1 = l1->next;
+        }
+        while(l2!=NULL){
+            sum = l2->val + carry;
+            if(sum>9){
+                prod = sum % 10;
+                carry = sum / 10;
+            }else{
+                prod = sum % 10;
+                carry = 0;
+            }
+            sumList = insertSumVal(sumList, prod);
+            l2 = l2->next;
+        }
+        //cout<<carry;
+        if(carry!=0){
+            sumList = insertSumVal(sumList, carry);
+        }
+        return sumList;
+            
+    }
+};
