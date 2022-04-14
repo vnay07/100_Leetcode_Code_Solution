@@ -1,0 +1,94 @@
+//Problem Link: https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+//Solution:
+
+class Solution {
+public:
+    vector<string> letterCombinations(string s) {
+        vector<string> res;
+        map<char, string> m;
+        m.insert({'2', "abc"});
+        m.insert({'3', "def"});
+        m.insert({'4', "ghi"});
+        m.insert({'5', "jkl"});
+        m.insert({'6', "mno"});
+        m.insert({'7', "pqrs"});
+        m.insert({'8', "tuv"});
+        m.insert({'9', "wxyz"});
+        //cout<<"hi";
+        int n = s.length();
+        if(n==0){
+            return {};
+        }
+        if(n==1){
+            string temp =  m[s[0]];
+            int len = temp.length();
+            for(int i=0;i<len;i++){
+                string x;
+                x += temp[i];
+                res.push_back(x);
+            }
+            return res;
+        }
+        if(n==2){
+            string s1 =  m[s[0]];
+            string s2 =  m[s[1]];
+            string merge;
+            for(int i=0;i<s1.length();i++){
+                for(int j=0;j<s2.length();j++){
+                    string a, b;
+                    a += s1[i];
+                    b += s2[j];
+                    merge = a+b;
+                    res.push_back(merge);
+                }
+            }
+            return res;
+        }
+        if(n==3){
+            string s1 = m[s[0]];
+            string s2 = m[s[1]];
+            string s3 = m[s[2]];
+            
+            string merge;
+            for(int i=0;i<s1.length();i++){
+                for(int j=0;j<s2.length();j++){
+                    for(int k=0;k<s3.length();k++){
+                        string a, b, c;
+                        a += s1[i];
+                        b += s2[j];
+                        c += s3[k];
+                        merge = a+b+c;
+                        res.push_back(merge);
+                    }
+                }
+            }
+            return res;
+        }
+        
+        if(n==4){
+            string s1 = m[s[0]];
+            string s2 = m[s[1]];
+            string s3 = m[s[2]];
+            string s4 = m[s[3]];
+            string merge;
+            for(int i=0;i<s1.length();i++){
+                for(int j=0;j<s2.length();j++){
+                    for(int k=0;k<s3.length();k++){
+                        for(int l=0;l<s4.length();l++){
+                            string a, b, c, d;
+                            a += s1[i];
+                            b += s2[j];
+                            c += s3[k];
+                            d += s4[l];
+                            merge = a+b+c+d;
+                            res.push_back(merge);
+                        }
+                    }
+                }
+            }
+            return res;
+        }
+        
+        return res;
+    }
+};
