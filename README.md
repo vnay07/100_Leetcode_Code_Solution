@@ -1,2 +1,3 @@
 # 100_Leetcode_Code_Solution
-100 Leetcode code solution challenge
+
+I have attached leetcode problem with optimized solution, do check them out. 
