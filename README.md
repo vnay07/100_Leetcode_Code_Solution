@@ -1,3 +1,4 @@
 # 100_Leetcode_Code_Solution
 
-I have attached leetcode problem with optimized solution, do check them out. 
+This repository contain famous leetcode problems with optimized solutions, do check them out. 
+
