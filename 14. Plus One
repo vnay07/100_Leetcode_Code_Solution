@@ -1,0 +1,29 @@
+//Link: https://leetcode.com/problems/plus-one/
+
+
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& a) {
+        int n = a.size();
+        int carry = 0, rem;
+        for(int i=n-1;i>=0;i--){
+            if(i==n-1)
+                a[i] = a[i] + 1;
+            else{
+                a[i] += carry;
+                carry=0;
+            }
+            if(a[i] > 9){
+                carry = a[i] / 10;
+                a[i] = a[i] % 10;
+            }
+            if(carry == 0){
+                break;
+            }
+        }
+        if(carry!=0){
+            a.insert(a.begin(), carry);
+        }
+        return a;
+    }
+};
